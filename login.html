@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="./css/EstilosComunes.css">
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+
+<body>
+    <div class="contenedor">
+        <form action="./config/login.php" method="post">
+            <h1>Iniciar Sesión</h1>
+            <label for="CorreoElectronico">CorreoElectronico<input type="email" name="CorreoElectronico"
+                    id="CorreoElectronico"></label>
+            <label for="Contraseña">Contraseña<input type="password" name="Contraseña" id="Contraseña"></label>
+            <a href="recuperacion.html">¿Olvidaste tu Contraseña?</a>
+            <button type="submit">Iniciar sesión</button>
+            <button type="reset">Cancelar</button>
+        </form>
+    </div>
+    <footer class="footer">
+        Copyright © 2020 SERVICIO AUTOMOTRIZ AUTOMASTER - Todos los derechos reservados.
+        <br>
+        <h3>AVISO DE PRIVACIDAD</h3>
+    </footer>
+</body>
+
+</html>
