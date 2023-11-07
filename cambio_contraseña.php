@@ -45,7 +45,7 @@ if ($row && isset($row['Id'])) {
         <footer class="footer">
             Copyright © 2020 SERVICIO AUTOMOTRIZ AUTOMASTER - Todos los derechos reservados.
             <br>
-            <h3>AVISO DE PRIVACIDAD</h3>
+            <a style="color: white; font-size: large;" href="aviso.html">AVISO DE PRIVACIDAD</a>
         </footer>
 
 
