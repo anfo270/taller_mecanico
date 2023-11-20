@@ -46,8 +46,12 @@ a{
     color: black;
 }
 a:hover {
-    border-bottom:solid 3px black;
-  }
+    border-bottom:solid 3px white;
+}
+p{
+    text-align: justify;
+    padding: 10px 100px;
+}
 .main{
 grid-area: main;
 background-color: white;

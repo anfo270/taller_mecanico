@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="./css/EstilosComunes.css">
+    <link rel="stylesheet" href="./css/login.css">
+
+</head>
+
+<body>
+    <div class="contenedor">
+
+        <form action="./config/creacionusuario.php" method="post">
+
+            <h1>Registrarse</h1>
+            <label for="Nombre">Nombre</label><input type="text" name="Nombre" id="Nombre" required>
+            <label for="ApellidoMaterno">Apellido Materno<input type="text" name="ApellidoMaterno" id="ApellidoMaterno"
+                    required></label>
+            <label for="ApellidoPaterno">Apellido Paterno <input type="text" name="ApellidoPaterno" id="ApellidoPaterno"
+                    required></label>
+            <label for="CorreoElectronico">CorreoElectronico<input type="email" name="CorreoElectronico"
+                    id="CorreoElectronico" required></label>
+            <label for="Contraseña">Contraseña
+                <input type="password" name="Contraseña" id="Contraseña" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$"
+                    title="La contraseña debe contener al menos 8 caracteres, una letra mayúscula, una letra minúscula y un número"
+                    required>
+                <p id="error-contraseña" style="color: red;"></p>
+
+            </label>
+            <div class="form-group">
+                <label for="Terminos y condiciones">Aceptar <a id="Condiciones" href="#">términos y condiciones</a>
+                </label><input type="checkbox" name="terminos" id="terminos">
+            </div>
+            <button type="submit">Guardar</button>
+            <button type="reset" onclick="location.href='../login.html'">Cancelar</button>
+        </form>
+        <footer class="footer">
+            Copyright © 2020 SERVICIO AUTOMOTRIZ AUTOMASTER - Todos los derechos reservados.
+            <br>
+            <a style="color: white; font-size: large;" href="aviso.html">AVISO DE PRIVACIDAD</a>
+        </footer>
+
+    </div>
+
+    <div class="modal-contenedor" id="modal-contenedor">
+        <div class="modal">
+            <span class="cerrar-modal" id="cerrar-modal">&times;</span>
+            <h1>Términos y Condiciones del Servicio</h1>
+
+            <p><strong>1. Aceptación de los Términos y Condiciones</strong></p>
+            <p>Al utilizar los servicios de agendamiento y visualización de citas ofrecidos por AutoMasters, usted
+                acepta y se compromete a cumplir con los siguientes términos y condiciones. Si no está
+                de acuerdo con estos términos, le recomendamos no utilizar nuestros servicios.</p>
+
+            <p><strong>2. Uso del Servicio</strong></p>
+            <p>2.1. Los servicios de agendamiento y visualización de citas se proporcionan con el propósito de
+                permitir
+                a los usuarios programar citas para servicios de reparación y mantenimiento de vehículos en
+                AutoMasters.
+            </p>
+            <p>2.2. Los usuarios deben proporcionar información precisa y completa al agendar una cita, incluyendo
+                información de contacto y detalles del vehículo.</p>
+            <p>2.3. Los usuarios deben utilizar este servicio de manera legal y ética y cumplir con todas las leyes
+                y
+                regulaciones aplicables.</p>
+
+            <p><strong>3. Privacidad y Seguridad de los Datos</strong></p>
+            <p>3.1. AutoMasters se compromete a proteger la privacidad y seguridad de los datos de los
+                usuarios. La información proporcionada se utilizará únicamente para fines de programación de citas y
+                no
+                se compartirá con terceros sin el consentimiento del usuario.</p>
+
+            <p><strong>4. Reserva de Citas</strong></p>
+            <p>4.1. Las citas programadas a través de nuestro servicio están sujetas a la disponibilidad de horarios
+                y
+                servicios en AutoMasters.</p>
+            <p>4.2. AutoMasters se reserva el derecho de reprogramar o cancelar una cita si no puede
+                proporcionar el servicio programado por razones fuera de su control, como condiciones climáticas
+                extremas o problemas técnicos.</p>
+
+            <p><strong>5. Cambios y Cancelaciones</strong></p>
+            <p>5.1. Los usuarios pueden realizar cambios en sus citas programadas o cancelarlas con anticipación a
+                través de nuestro servicio en línea.</p>
+            <p>5.2. Se recomienda a los usuarios que notifiquen a AutoMasters con la mayor antelación
+                posible si desean realizar cambios o cancelaciones en sus citas.</p>
+
+            <p><strong>6. Responsabilidad</strong></p>
+            <p>6.1. AutoMasters no asume ninguna responsabilidad por daños o pérdidas sufridos por los
+                usuarios debido al uso de nuestros servicios.</p>
+            <p>6.2. Los usuarios asumen la responsabilidad de proporcionar información precisa y completa al
+                programar
+                una cita, incluyendo detalles sobre el vehículo y las necesidades de servicio.</p>
+
+            <p><strong>7. Modificaciones de los Términos y Condiciones</strong></p>
+            <p>7.1. AutoMasters se reserva el derecho de modificar estos términos y condiciones en
+                cualquier momento. Los usuarios serán notificados de cualquier cambio en los términos y condiciones.
+            </p>
+
+            <p><strong>8. Contacto</strong></p>
+            <p>8.1. Si los usuarios tienen alguna pregunta o inquietud con respecto a estos términos y condiciones,
+                pueden ponerse en contacto con AutoMasters a través de los datos de contacto
+                proporcionados en el sitio web.</p>
+        </div>
+    </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            var checkbox = document.getElementById('terminos');
+            if (!checkbox.checked) {
+                alert('Debes aceptar los términos y condiciones para continuar.');
+                event.preventDefault(); // Detiene el envío del formulario
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const modalContenedor = document.getElementById("modal-contenedor");
+            const mostrarModal = document.getElementById("Condiciones");
+            const cerrarModal = document.getElementById("cerrar-modal");
+            const modalContenido = document.querySelector(".modal"); // Selecciona el contenido del modal
+
+            mostrarModal.addEventListener("click", function () {
+                modalContenedor.classList.add("modal-abierto");
+            });
+
+            cerrarModal.addEventListener("click", function () {
+                modalContenedor.classList.remove("modal-abierto");
+            });
+            // Ocultar el modal al cargar la página
+            modalContenedor.style.display = "none";
+
+            // Mostrar el modal al hacer clic en "Ver información"
+            mostrarModal.addEventListener("click", function () {
+                modalContenedor.style.display = "block";
+            });
+
+            // Cerrar el modal al hacer clic en la "X"
+            cerrarModal.addEventListener("click", function () {
+                modalContenedor.style.display = "none";
+            });
+
+            // Cerrar el modal al hacer clic fuera de él
+            modalContenedor.addEventListener("click", function (event) {
+                if (event.target === modalContenedor) {
+                    modalContenedor.style.display = "none";
+                }
+            });
+        });
+
+        const contraseñaInput = document.getElementById("Contraseña");
+        const errorContraseña = document.getElementById("error-contraseña");
+        const submitButton = document.getElementById("submit-button");
+
+        submitButton.addEventListener("click", function () {
+            if (!contraseñaInput.checkValidity()) {
+                errorContraseña.textContent = contraseñaInput.validationMessage;
+            } else {
+                errorContraseña.textContent = "";
+            }
+        });
+    </script>
+</body>
+
+</html>

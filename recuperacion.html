@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="./css/EstilosComunes.css">
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <div class="contenedor">
+
+        <form action="./config/recuperacioncontraseña.php" method="post">
+
+            <h1>Recuperar Contraseña</h1>
+            <label for="CorreoElectronico">Correo Electrónico</label>
+            <input type="email" name="CorreoElectronico" id="CorreoElectronico" required>
+
+            <button type="submit">Recuperar Contraseña</button>
+            <button type="reset" onclick="location.href='./login.html'">Cancelar</button>
+        </form>
+
+        <footer class="footer">
+            Copyright © 2020 SERVICIO AUTOMOTRIZ AUTOMASTER - Todos los derechos reservados.
+            <br>
+            <a style="color: white; font-size: large;" href="aviso.html">AVISO DE PRIVACIDAD</a>
+        </footer>
+
+    </div>
+</body>
+
+</html>
