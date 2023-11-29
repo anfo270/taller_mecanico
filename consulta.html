@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Modelos de Carros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class = "grid-container">
+      <!-- Contenedores -->
+      <header class="header"> 
+        <nav class="logo">
+            <img height="90" src="img/logo.png" alt="">
+        </nav>
+        <nav class="menu">
+            <nav><a href="index.html">INICIO</a></nav>
+            <nav><a href="servicios.html">SERVICIOS</a></nav>
+            <nav><a href="nosotros.html">NOSOTROS</a></nav>
+            <nav><a href="/CitasRoque/view/index-view.php">CITAS</a></nav>
+            <nav><a href="contacto.html">CONTACTO</a></nav>
+            <nav class="botones">
+                <a href=""><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/90/shopping-cart--v1.png" alt="shopping-cart--v1"/></a>
+                <a href=""><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/user--v1.png" alt="user--v1"/></a>
+            </nav>
+        </nav>
+    </header>
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        select,
+        input[type="button"],
+        input[type="text"],
+        fieldset {
+            margin-bottom: 10px;
+        }
+
+        #cq-search-controls {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #cq-search-controls fieldset {
+            width: 48%;
+        }
+
+        hr {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(
+        function()
+        {
+             //Create a variable for the CarQuery object.  You can call it whatever you like.
+             var carquery = new CarQuery();
+        
+             //Run the carquery init function to get things started:
+             carquery.init();
+             
+             //Optionally, you can pre-select a vehicle by passing year / make / model / trim to the init function:
+             //carquery.init('2000', 'dodge', 'Viper', 11636);
+        
+             //Optional: Pass sold_in_us:true to the setFilters method to show only US models. 
+             carquery.setFilters( {sold_in_us:true} );
+        
+             //Optional: initialize the year, make, model, and trim drop downs by providing their element IDs
+             carquery.initYearMakeModelTrim('car-years', 'car-makes', 'car-models', 'car-model-trims');
+        
+             //Optional: set the onclick event for a button to show car data.
+             $('#cq-show-data').click(  function(){ carquery.populateCarData('car-model-data'); } );
+        
+             //Optional: initialize the make, model, trim lists by providing their element IDs.
+             carquery.initMakeModelTrimList('make-list', 'model-list', 'trim-list', 'trim-data-list');
+        
+             //Optional: set minimum and/or maximum year options.
+             carquery.year_select_min=1990;
+             carquery.year_select_max=1999;
+         
+             //Optional: initialize search interface elements.
+             //The IDs provided below are the IDs of the text and select inputs that will be used to set the search criteria.
+             //All values are optional, and will be set to the default values provided below if not specified.
+             var searchArgs =
+             ({
+                 body_id:                       "cq-body"
+                ,default_search_text:           "Keyword Search"
+                ,doors_id:                      "cq-doors"
+                ,drive_id:                      "cq-drive"
+                ,engine_position_id:            "cq-engine-position"
+                ,engine_type_id:                "cq-engine-type"
+                ,fuel_type_id:                  "cq-fuel-type"
+                ,min_cylinders_id:              "cq-min-cylinders"
+                ,min_mpg_hwy_id:                "cq-min-mpg-hwy"
+                ,min_power_id:                  "cq-min-power"
+                ,min_top_speed_id:              "cq-min-top-speed"
+                ,min_torque_id:                 "cq-min-torque"
+                ,min_weight_id:                 "cq-min-weight"
+                ,min_year_id:                   "cq-min-year"
+                ,max_cylinders_id:              "cq-max-cylinders"
+                ,max_mpg_hwy_id:                "cq-max-mpg-hwy"
+                ,max_power_id:                  "cq-max-power"
+                ,max_top_speed_id:              "cq-max-top-speed"
+                ,max_weight_id:                 "cq-max-weight"
+                ,max_year_id:                   "cq-max-year"
+                ,search_controls_id:            "cq-search-controls"
+                ,search_input_id:               "cq-search-input"
+                ,search_results_id:             "cq-search-results"
+                ,search_result_id:              "cq-search-result"
+                ,seats_id:                      "cq-seats"
+                ,sold_in_us_id:                 "cq-sold-in-us"
+             }); 
+             carquery.initSearchInterface(searchArgs);
+        
+             //If creating a search interface, set onclick event for the search button.  Make sure the ID used matches your search button ID.
+             $('#cq-search-btn').click( function(){ carquery.search(); } );
+        });
+    </script>
+    <select name="car-years" id="car-years"></select>  
+    <select name="car-makes" id="car-makes"></select> 
+    <select name="car-models" id="car-models"></select>
+    <select name="car-model-trims" id="car-model-trims"></select>  
+    <input id="cq-show-data" type="button" value="Mostrar datos" />
+    <div id="car-model-data"></div>
+    <table> 
+        <tr> 
+            <td valign="top"><div id="make-list" /></td> 
+            <td valign="top"><div id="model-list" /></td> 
+            <td valign="top"><div id="trim-list" /></td> 
+        </tr> 
+        <tr> 
+            <td colspan="3"><div id="trim-data-list" /></td> 
+        </tr> 
+    </table> 
+    <div id="cq-search-controls">
+        <div>
+
+
+
+                        <fieldset>
+                         <center><input type="button" id="cq-search-btn" value="Search CarQuery" /></center>
+                         <hr/>
+                         Palabra clave: <input id="cq-search-input" type="text" />
+                         <hr/>
+                         Rango edad: <select id="cq-min-year"></select> to <select id="cq-max-year"></select>
+                         <br/><hr/>
+                         <input id="cq-sold-in-us" name="us-only-filter" type="checkbox" /><label for="us-only-filter">Show Only US Models</label>
+                         <br/><hr/>
+                         Posición motor : <select id="cq-engine-position"></select>
+                         <br/><hr/>
+                         Tipo motor : <select id="cq-engine-type"></select>
+                         <br/><hr/>
+                         Cilindros: <select id="cq-min-cylinders"></select> to <select id="cq-max-cylinders"></select>
+                         <br/><hr/>
+                         Power (hp): <input type="text" id="cq-min-power" style="width:30px" /> to <input type="text" id="cq-max-power" style="width:30px" />
+                         <br/><hr/>
+                          Torque (lb-ft): <input type="text" id="cq-min-torque" style="width:30px" /> to <input type="text" id="cq-max-torque" style="width:30px" />
+                         <br/><hr/>
+                          Combustible Type: <select id="cq-fuel-type"></select>
+                         <br/><hr/>
+                         Top velocidad (mph): <input type="text" id="cq-min-top-speed" style="width:30px" /> to <input type="text" id="cq-max-top-speed" style="width:30px" />
+                         <br/><hr/>
+                         Transmisión: <select id="cq-drive"></select>
+                         <br/><hr/>
+                        Asientos: <select id="cq-seats"></select>
+                         <br/><hr/>
+                         Puertas: <select id="cq-doors"></select>
+                         <br/><hr/>
+                         Peso (lbs): <input type="text" id="cq-min-weight" style="width:30px" /> to <input type="text" id="cq-max-weight" style="width:30px" />
+                        </fieldset>
+                    </div>
+                    <div style="float:left;width:300px;">
+                       <fieldset>
+                          <div id="cq-search-results">Buscar Resultados:</div>
+                       </fieldset>
+                    </div>
+                 </div>
+                 
+                 <div id="cq-search-result" style="display:none"></div>
