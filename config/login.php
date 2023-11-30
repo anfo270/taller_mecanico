@@ -17,7 +17,7 @@ if ($resultado->num_rows > 0) {
     $_SESSION['CorreoElectronico'] = $correo;
     $_SESSION['Contraseña'] = $contraseña;
     $_SESSION['NombreUsuario'] = $resultado->fetch_assoc()["Nombre"];
-    echo "<script>location.href='../index.html'</script>";
+    echo "<script>location.href='../incio.html'</script>";
 } else {
     echo '<script>alert("Correo Electronico o Contraseña incorrecta")</script>';
     echo "<script>location.href='../login.html'</script>";
