@@ -1,13 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoMaster</title>
     <!-- Estilo -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Maps API -->
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLtf0ATbXQsjBnD2Na48pBZx-MV6cm1kc&callback=initMap"></script>
+
+    <style>
+        /* Estilo opcional para el contenedor del mapa */
+        #map {
+            height: 300px; /* Ajusta la altura según tus necesidades */
+            width: 100%;
+        }
+
+        /* Estilos para el formulario */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 60%; /* Ajusta el ancho del formulario */
+            margin: 20px auto; /* Centra el formulario en la página */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <script>
+        // Inicializa el mapa cuando la API esté cargada
+        function initMap() {
+            // Coordenadas para Ciudad Juárez, México
+            var ciudadJuarez = { lat: 31.6904, lng: -106.4245 };
+
+            // Crea un nuevo mapa en el elemento con id="map"
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: ciudadJuarez,
+                zoom: 12 // Ajusta el nivel de zoom según tus necesidades
+            });
+
+            // Puedes agregar marcadores, líneas, etc. según tus necesidades
+            var marker = new google.maps.Marker({
+                position: ciudadJuarez,
+                map: map,
+                title: 'Ciudad Juárez'
+            });
+        }
+    </script>
+    
 </head>
-<body class = "grid-container">
+
+<body class="grid-container">
     <!-- Contenedores -->
     <header class="header"> 
         <nav class="logo">
@@ -25,14 +97,27 @@
             </nav>
         </nav>
     </header>
-    <article class="main">
-        
-    </article>
-    <footer class="footer">
-        Copyright © 2020 SERVICIO AUTOMOTRIZ AUTOMASTER - Todos los derechos reservados.
-        <br>
-        <a style="color: white; font-size: large;" href="aviso.html">AVISO DE PRIVACIDAD</a>
-    </footer>
+  
+    <!-- Formulario de Formspree -->
+    <form
+        action="https://formspree.io/f/xknlaaba"
+        method="POST"
+    >
+        <label>
+            Correo
+            <input type="email" name="email">
+        </label>
+        <label>
+            Mensaje:
+            <textarea name="message"></textarea>
+        </label>
+        <!-- your other form fields go here -->
+        <button type="submit">Enviar</button>
+    </form>
 
+    <!-- Contenedor para el mapa -->
+    <div id="map"></div>
+
+   
 </body>
 </html>
